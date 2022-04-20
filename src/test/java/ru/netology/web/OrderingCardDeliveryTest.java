@@ -1,6 +1,11 @@
 package ru.netology.web;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -10,6 +15,19 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class OrderingCardDeliveryTest {
+
+   @BeforeEach
+    public void setUp() {
+
+        Configuration.headless = true;
+    }
+
+    @AfterEach
+    public void tearDown() {
+        closeWebDriver();
+    }
+
+
         LocalDate localDate = LocalDate.now().plusDays(3);
         DateTimeFormatter data = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String date = localDate.format(data);
